@@ -40,11 +40,11 @@ jobs:
 
       - name: Build with Gradle
         working-directory: ./gamigami-backend
-        run: ./gradlew build
+        run: sudo ./gradlew build
 
       - name: Run tests
         working-directory: ./gamigami-backend
-        run: ./gradlew test
+        run: sudo ./gradlew test
 
       # - name: Deploy to staging server
       #   run: |
