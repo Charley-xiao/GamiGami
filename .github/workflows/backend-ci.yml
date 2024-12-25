@@ -1,0 +1,51 @@
+name: Backend CI Workflow
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Set up PostgreSQL
+        uses: harmon758/postgresql-action@v2
+        with:
+          postgresql version: '14'
+          postgresql db: 'gamigami'
+          postgresql username: 'postgres'
+          postgresql password: '20040804'
+
+      - name: Build with Gradle
+        working-directory: ./gamigami-backend
+        run: ./gradlew build
+
+      - name: Run tests
+        working-directory: ./gamigami-backend
+        run: ./gradlew test
+
+      # - name: Deploy to staging server
+      #   run: |
+      #     scp -i ${{ secrets.STAGING_SSH_KEY }} ./build/libs/myapp.jar user@staging-server:/path/to/deploy
+      #     ssh -i ${{ secrets.STAGING_SSH_KEY }} user@staging-server "java -jar /path/to/deploy/myapp.jar"
