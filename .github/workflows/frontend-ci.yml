@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./frontend
-        run: npm install
+        run: npm ci
 
   lint:
     runs-on: ubuntu-latest
@@ -40,7 +40,7 @@ jobs:
 
       - name: Run ESLint
         working-directory: ./frontend
-        run: npm run lint
+        run: npx eslint .
 
   build:
     runs-on: ubuntu-latest
