@@ -38,13 +38,17 @@ jobs:
           postgresql username: 'postgres'
           postgresql password: '20040804'
 
+      - name: Set execute permissions on gradlew
+        working-directory: ./gamigami-backend
+        run: sudo chmod +x ./gradlew
+      
       - name: Build with Gradle
         working-directory: ./gamigami-backend
-        run: sudo ./gradlew build
+        run: ./gradlew build
 
       - name: Run tests
         working-directory: ./gamigami-backend
-        run: sudo ./gradlew test
+        run: ./gradlew test
 
       # - name: Deploy to staging server
       #   run: |
