@@ -10,7 +10,7 @@ Developing...
 
 Actively looking for collaborators!
 
-Tech Stack: React, Node.js, TailwindCSS, MongoDB
+Tech Stack: React, Node.js, TailwindCSS, Springboot
 
 ## Features
 
@@ -19,9 +19,7 @@ Tech Stack: React, Node.js, TailwindCSS, MongoDB
 ## Installation
 
 ```bash
-cd backend
-npm install
-cd ../frontend
+cd frontend
 npm install
 ```
 
@@ -29,20 +27,7 @@ npm install
 
 ### Backend
 
-Create a `.env` file in the `backend` directory with the following content:
-
-```env
-MONGO_URI=mongodb://127.0.0.1:27017/gamigami
-JWT_SECRET=your_secret
-PORT=5000
-```
-
-Run the backend server:
-
-```bash
-cd backend
-node server.js
-```
+TODO
 
 ### Frontend
 
